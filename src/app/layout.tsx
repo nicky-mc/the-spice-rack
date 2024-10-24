@@ -1,8 +1,7 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
 import { ClerkProvider, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import Home from "./page"; // Import your Home page
 import "./globals.css";
-import Home from "./page"; // Import the Home component
+import localFont from "next/font/local";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -15,7 +14,7 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "The Spice Rack",
   description:
     "Social Media on a Spicy Level (don't be naughty! not like that!)",
@@ -23,9 +22,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <ClerkProvider>
       <html lang="en">

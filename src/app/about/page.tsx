@@ -1,3 +1,4 @@
+//src/app/about/page.tsx
 import Image from "next/image";
 import Link from "next/link";
 
@@ -31,7 +32,10 @@ export default function About() {
         <p className="text-3xl font-bold text-white text-center mt-8">
           Don&apos;t be naughty! Not like that!
         </p>
-        <Link href="/" className="mt-8 text-lg text-white underline">
+        <Link
+          href="/"
+          className="mt-8 text-lg text-white underline hover:text-gray-200 focus:text-gray-400 focus:outline-none"
+        >
           Return to Home
         </Link>
       </main>

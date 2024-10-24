@@ -1,4 +1,5 @@
-"use client";
+"use client"; // This must be the first line
+
 import { useState } from "react";
 import Image from "next/image";
 import { SignIn, SignUp, useUser } from "@clerk/nextjs";

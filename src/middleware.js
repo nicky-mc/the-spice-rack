@@ -1,26 +1,36 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
-// Define public routes that do not require authentication
-const isPublicRoute = createRouteMatcher([
-  "/about",
+// Define protected routes that require authentication
+const isProtectedRoute = createRouteMatcher([
   "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
-  "/(api|trpc)(.*)",
+  "/(api|trpc)(.*)", // API and TRPC routes
 ]);
 
-// Use clerkMiddleware to protect the routes
+// Clerk middleware to protect the routes
 export default clerkMiddleware((req) => {
-  if (isPublicRoute(req)) {
-    return NextResponse.next();
+  // Safely check if nextUrl exists in the request
+  if (!req.nextUrl) {
+    console.error("nextUrl is undefined, cannot process the request");
+    return NextResponse.next(); // Continue without breaking
   }
-  return NextResponse.redirect("/sign-in");
+
+  const { pathname } = req.nextUrl;
+
+  // Allow access to non-protected routes like /about
+  if (isProtectedRoute(req) && !pathname.startsWith("/about")) {
+    return NextResponse.next(); // Continue with protected route access
+  }
+
+  // If no match, allow public access
+  return NextResponse.next();
 });
 
 export const config = {
   matcher: [
-    // Skip Next.js internals and all static files, unless found in search params
+    // Apply to all routes except for static files
     "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
-    // Always run for API routes
+    // Always run for API and TRPC routes
     "/(api|trpc)(.*)",
   ],
 };
