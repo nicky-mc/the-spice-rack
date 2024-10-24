@@ -24,8 +24,12 @@ export default function Home() {
           Welcome to The Spice Rack
         </h1>
         <p className="text-lg text-white text-center sm:text-left">
-          Join us and spice up your social media experience! 🌶 <br />️
-          Don&apos;t be naughty! Not like that!
+          Join us and spice up your social media experience! 🌶 <br />
+          Whether you&apos;re here to connect with friends, discover new
+          interests, or simply have a good time, The Spice Rack has something
+          for everyone. Join us and be part of a community that values
+          creativity, inclusivity, and a touch of spice! 🌶
+          <br />️ Don&apos;t be naughty! Not like that!
         </p>
 
         {!isSignedIn && (
