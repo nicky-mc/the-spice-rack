@@ -1,14 +1,12 @@
-import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
-
-// Define protected routes that require authentication
-const isProtectedRoute = createRouteMatcher([
-  "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
-  "/(api|trpc)(.*)",
-]);
+import { clerkMiddleware } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
 
 // Use clerkMiddleware to protect the routes
-export default clerkMiddleware((auth, req) => {
-  if (isProtectedRoute(req)) auth().protect();
+export default clerkMiddleware((req) => {
+  console.log("Request Object:", req);
+
+  // Log the request object
+  return NextResponse.next();
 });
 
 export const config = {

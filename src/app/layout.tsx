@@ -1,12 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import {
-  ClerkProvider,
-  RedirectToSignIn,
-  SignedIn,
-  SignedOut,
-} from "@clerk/nextjs";
+import { ClerkProvider, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import "./globals.css";
+import Home from "./page"; // Import the Home component
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -21,7 +17,8 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "The Spice Rack",
-  description: "Social Media on a Spicy Level",
+  description:
+    "Social Media on a Spicy Level (don't be naughty! not like that!)",
 };
 
 export default function RootLayout({
@@ -35,9 +32,14 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <SignedIn>{children}</SignedIn>
+          <SignedIn>
+            <div className="flex justify-end p-4">
+              <UserButton />
+            </div>
+            {children}
+          </SignedIn>
           <SignedOut>
-            <RedirectToSignIn />
+            <Home />
           </SignedOut>
         </body>
       </html>
