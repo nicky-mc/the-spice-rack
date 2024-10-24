@@ -10,5 +10,5 @@ generator client {
 
 datasource db {
   provider = "supabase"
-  url      =  "process.env.DB_URL";
+  url      =  "process.env.DATABASE_URL";
 }

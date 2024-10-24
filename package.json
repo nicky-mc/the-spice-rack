@@ -12,6 +12,7 @@
     "@clerk/nextjs": "^6.0.1",
     "@codexteam/icons": "^0.3.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "@prisma/client": "^5.7.0",
     "@supabase/supabase-js": "^2.45.6",
     "dotenv": "^16.4.5",
     "material-icons": "^1.13.12",
