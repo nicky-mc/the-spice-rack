@@ -1,0 +1,52 @@
+/* Sidebar/* Sidebar.module.css */
+.sidebar-wrapper {
+  position: fixed;
+  top: 72px; /* Adjust this value to match the header height */
+  left: -250px; /* Hidden by default */
+  width: 250px;
+  height: calc(100% - 72px); /* Adjust this value to match the header height */
+  background-color: #333;
+  color: white;
+  transition: left 0.3s ease;
+  z-index: 998;
+}
+
+.sidebar-wrapper.open {
+  left: 0; /* Visible when open */
+}
+
+.sidebar-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  text-transform: capitalize;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.item:hover {
+  cursor: pointer;
+  background: var(--primary-low);
+}
+
+.item.active {
+  background: var(--primary-low);
+}
+
+/* for mobile */
+.drawerContainer {
+  height: 100%;
+}
+.drawerContainer aside {
+  height: 100%;
+}

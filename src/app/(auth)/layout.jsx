@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import css from "@/styles/authLayout.module.css";
+
 export const metadata = {
   title: "Sign in/up to The Spice Rack",
   description: "Sign in to your account or create a new account",
