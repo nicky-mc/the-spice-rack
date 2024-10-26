@@ -12,6 +12,7 @@ const AuthLayout = ({ children }) => {
       <div className={css.container}>
         <div className={css.left}>{children}</div>
         <div className={css.right}>
+          <h1>The Spice Rack</h1> <br />
           <Image
             src="/spice.png"
             alt="Spice Rack Logo"

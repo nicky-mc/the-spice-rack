@@ -11,6 +11,8 @@
   gap: 1rem;
   padding: 1rem;
   flex-grow: 1;
+  font-size: large;
+  color: black;
 
   @media (max-width: 440px) {
     padding: 0.5rem;
@@ -18,4 +20,7 @@
 }
 .page_body {
   flex: 1;
+}
+h1 {
+  color: var(--primary);
 }
