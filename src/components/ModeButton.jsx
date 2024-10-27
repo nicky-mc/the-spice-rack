@@ -1,11 +1,8 @@
 "use client";
-import {
-  useSettingsContext,
-  useThemeContext,
-} from "@/context/settings/settings-context";
-import { Icon } from "@iconify/react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faToggleOn } from "@fortawesome/free-solid-svg-icons";
+import { useSettingsContext } from "@/context/settings/settings-context";
 import { Button } from "antd";
-import React from "react";
 
 const ModeButton = () => {
   const { setSettings } = useSettingsContext();
@@ -18,8 +15,10 @@ const ModeButton = () => {
           theme: prev.theme === "dark" ? "light" : "dark",
         }));
       }}
-      icon={<Icon icon="mdi:theme-light-dark" width={"35px"} />}
+      icon={<FontAwesomeIcon icon={faToggleOn} width={"35px"} />}
+      className="mode-button"
     />
   );
 };
+
 export default ModeButton;

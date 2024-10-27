@@ -1,5 +1,4 @@
 "use client";
-
 import { useSettingsContext } from "@/context/settings/settings-context";
 import { ConfigProvider, theme } from "antd";
 import { useCallback } from "react";
@@ -14,7 +13,11 @@ const ThemeProvider = ({ children }) => {
   }, [globalTheme]);
 
   const BaseBg = useCallback(() => {
-    return globalTheme === "light" ? "#F4F6F8" : "black";
+    return globalTheme === "light" ? "white" : "black";
+  }, [globalTheme]);
+
+  const TextColor = useCallback(() => {
+    return globalTheme === "light" ? "black" : "white";
   }, [globalTheme]);
 
   return (
@@ -29,12 +32,14 @@ const ThemeProvider = ({ children }) => {
           colorPrimary: "#F9AA11",
           boxBg: BoxBg(),
           baseBg: BaseBg(),
+          colorText: TextColor(),
         },
         components: {
           Typography: {
             fontSize: "none",
             lineHeight: "none",
             fontWeightStrong: "none",
+            color: TextColor(),
           },
         },
       }}

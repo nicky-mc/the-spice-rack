@@ -5,6 +5,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: "Raleway";
 }
 
 html,
@@ -26,6 +27,15 @@ body {
     rgba(249, 170, 17, 0) -71.44%,
     #f9aa11 51.14%
   );
+  --background-color: #000; /* Dark mode background color */
+  --component-color: #2f4f7f; /* Dark mode component color */
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background-color: #f9f9f9; /* Light mode background color */
+    --component-color: #add8e6; /* Light mode component color */
+  }
 }
 
 .cl-logoImage {
@@ -39,22 +49,56 @@ body {
 }
 
 .cl-card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background-color: lightblue;
-  color: #000;
+  background-color: var(
+    --component-color
+  ); /* Use the component color variable */
+  color: var(--text-color);
   font-family: raleway;
-  text-shadow: 0 4px 8px 0 rgb(255, 255, 255), 0 6px 20px 0 rgb(255, 255, 255);
+  text-shadow: 0 4px 8px 0 rgb(255, 255, 255);
+  box-shadow: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-size: 25px;
 }
 
 .cl-card button {
-  background-color: dimgray;
+  background-color: var(
+    --component-color
+  ); /* Use the component color variable */
   color: salmon;
+  text-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: rgba(0, 0, 0, 0.19);
+}
+
+.cl-card button:hover {
+  background-color: salmon;
+  color: var(--component-color); /* Use the component color variable */
   text-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .cl-internal-b3fm6y {
-  background-color: lightblue;
-  color: dimgray;
-  font-family: raleway;
+  display: none;
+}
+
+.cl-footer {
+  font-family: "raleway";
+  color: #f9aa11;
   text-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.cl-footerAction {
+  font-family: "raleway";
+  color: #f9aa11;
+  text-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.cl-footerAction a {
+  color: #f9aa11;
+  text-decoration: none;
+}
+
+.cl-footerAction a:hover {
+  color: green;
+  text-decoration: underline;
 }

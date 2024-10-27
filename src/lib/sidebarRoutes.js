@@ -1,17 +1,19 @@
+import { faHome, faUser, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+
 export const sidebarRoutes = () => [
   {
     name: "home",
-    icon: "home-16",
+    icon: faHome,
     route: "/",
   },
   {
     name: "my profile",
-    icon: "person-16",
+    icon: faUser,
     route: "/profile/${user?.id}",
   },
   {
     name: "messages",
-    icon: "chat-more-20",
+    icon: faEnvelope,
     route: "/messages",
   },
 ];

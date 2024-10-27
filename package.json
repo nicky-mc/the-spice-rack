@@ -6,16 +6,26 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prismaDev": "dotenv -e .env.local -- prisma migrate dev"
   },
   "dependencies": {
     "@ant-design/cssinjs": "^1.18.0",
     "@ant-design/happy-work-theme": "^1.0.0",
     "@clerk/nextjs": "^4.29.3",
+    "@fortawesome/fontawesome-svg-core": "^6.6.0",
+    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "@iconify/react": "^4.1.1",
+    "@prisma/client": "^5.7.0",
     "antd": "^5.11.5",
+    "dotenv": "^16.4.5",
+    "dotenv-cli": "^7.4.2",
+    "localtunnel": "^2.0.2",
     "next": "14.2.15",
     "next-cloudinary": "^6.16.0",
+    "pg": "^8.13.1",
+    "prisma": "^5.7.1",
     "react": "^18",
     "react-dom": "^18"
   },

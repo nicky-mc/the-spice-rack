@@ -14,11 +14,17 @@
   display: flex;
   overflow: hidden;
 }
+
 .left {
   flex: 1.1;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: transparent;
+  padding: 20px;
+  position: relative;
+  font-family: "Raleway";
+  font-size: 20px;
 }
 
 .right {
@@ -27,4 +33,16 @@
   align-items: center;
   justify-content: center;
   background-color: var(secondary-color);
+}
+.title {
+  font-size: 40px;
+  font-weight: bold;
+  color: var(--primary);
+  margin-bottom: 20px;
+  font-family: raleway;
+}
+.title p {
+  margin: 0;
+  font-family: raleway;
+  font-size: 25px;
 }

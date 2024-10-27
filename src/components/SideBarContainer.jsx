@@ -15,7 +15,7 @@ const SidebarContainer = ({
       <Drawer
         {...other}
         placement={"left"}
-        open={isDrawrOpen}
+        open={isDrawerOpen}
         onClose={() => setIsDrawerOpen(false)}
         height={"100%"}
       >

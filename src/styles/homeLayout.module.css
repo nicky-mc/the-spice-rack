@@ -5,6 +5,8 @@
   min-width: 100vw;
   flex-direction: column;
   overflow: scroll;
+  display: flex;
+  font-family: "Raleway";
 }
 .home-container {
   display: flex;
@@ -20,7 +22,4 @@
 }
 .page_body {
   flex: 1;
-}
-h1 {
-  color: var(--primary);
 }

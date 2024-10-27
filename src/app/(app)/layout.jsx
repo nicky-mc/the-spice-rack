@@ -3,7 +3,7 @@ import { SettingsContextProvider } from "../../context/settings/settings-provide
 import ThemeProvider from "@/lib/ThemeProvider/index";
 import Box from "@/components/Box";
 import Header from "@/components/Header";
-import Sidebar from "@/components/Sidebar";
+import Sidebar from "@/components/SideBar";
 import "@/styles/homeLayout.module.css";
 
 const Homelayout = ({ children }) => {
@@ -12,13 +12,18 @@ const Homelayout = ({ children }) => {
       <ThemeProvider>
         <Box
           type="baseBg"
-          style={{ position: "relative", width: "100%", height: "100%" }}
+          style={{
+            position: "relative",
+            width: "100%",
+            height: "100%",
+          }}
         >
           <div className="home-wrapper">
             <Header />
             <div className="home-container">
               <Sidebar />
             </div>
+            <div className="page-body">{children}</div>
           </div>
         </Box>
       </ThemeProvider>

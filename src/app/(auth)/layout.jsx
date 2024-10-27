@@ -1,29 +1,33 @@
 import React from "react";
-import Image from "next/image";
-import css from "@/styles/authLayout.module.css";
+import { SettingsContextProvider } from "../../context/settings/settings-provider";
+import ThemeProvider from "@/lib/ThemeProvider/index";
+import Box from "@/components/Box";
+import Header from "@/components/Header";
+import Sidebar from "@/components/SideBar";
+import "@/styles/homeLayout.module.css";
 
-export const metadata = {
-  title: "Sign in/up to The Spice Rack",
-  description: "Sign in to your account or create a new account",
-};
-const AuthLayout = ({ children }) => {
+const Homelayout = ({ children }) => {
   return (
-    <div className={css.wrapper}>
-      <div className={css.container}>
-        <div className={css.left}>{children}</div>
-        <div className={css.right}>
-          <h1>The Spice Rack</h1> <br />
-          <Image
-            src="/spice.png"
-            alt="Spice Rack Logo"
-            width={600}
-            height={600}
-            quality={100}
-          />
-        </div>
-      </div>
-    </div>
+    <SettingsContextProvider>
+      <ThemeProvider>
+        <Box
+          type="baseBg"
+          style={{
+            position: "relative",
+            width: "100%",
+            height: "100%",
+          }}
+        >
+          <div className="home-wrapper">
+            <Header />
+            <div className="home-container">
+              <Sidebar />
+            </div>
+            <div className="page-body">{children}</div>
+          </div>
+        </Box>
+      </ThemeProvider>
+    </SettingsContextProvider>
   );
 };
-
-export default AuthLayout;
+export default Homelayout;

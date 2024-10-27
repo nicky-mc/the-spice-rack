@@ -1,4 +1,4 @@
-/* Sidebar/* Sidebar.module.css */
+/* Sidebar.module.css */
 .sidebar-wrapper {
   position: fixed;
   top: 72px; /* Adjust this value to match the header height */
@@ -32,6 +32,8 @@
   text-transform: capitalize;
   text-decoration: none;
   font-weight: 600;
+  color: white;
+  background-color: orange;
 }
 
 .item:hover {
@@ -41,12 +43,4 @@
 
 .item.active {
   background: var(--primary-low);
-}
-
-/* for mobile */
-.drawerContainer {
-  height: 100%;
-}
-.drawerContainer aside {
-  height: 100%;
 }

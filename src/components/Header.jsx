@@ -1,32 +1,31 @@
-"use client";
 import React from "react";
-import css from "../styles/header.module.css";
+import styles from "../styles/header.module.css";
 import Box from "./Box";
 import Image from "next/image";
 import { Flex } from "antd";
 import ModeButton from "./ModeButton";
 import { UserButton } from "@clerk/nextjs";
-import SidebarButton from "./SideBarButton";
+import SidebarButton from "./SidebarButton";
 
 const Header = () => {
   return (
-    <header className="header-wrapper">
+    <header className={styles["header-wrapper"]}>
       <Box style={{ height: "100%" }}>
-        <div className="header-container">
-          <div className="sidebar-button">
+        <div className={styles["header-container"]}>
+          <div className={styles["left-container"]}>
             <SidebarButton />
+            <Image
+              src="/spice.png"
+              alt="Spice Rack Logo"
+              width={90}
+              height={90}
+              className={styles.logo}
+            />
           </div>
-
-          <Image
-            src="/spice.png"
-            alt="Spice Rack Logo"
-            width={90}
-            height={90}
-          />
-          <Flex gap={25} align="center">
+          <div className={styles["right-container"]}>
             <ModeButton />
             <UserButton afterSignoutUrl="/sign-in" />
-          </Flex>
+          </div>
         </div>
       </Box>
     </header>

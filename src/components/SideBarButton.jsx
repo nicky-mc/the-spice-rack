@@ -1,26 +1,26 @@
 "use client";
-
 import { Button, Typography } from "antd";
-import { Icon } from "@iconify/react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useSettingsContext } from "@/context/settings/settings-context";
 
 const SidebarButton = ({ onClick }) => {
-  const { setSettings } = useSettingsContext();
-  const handleClick = () => {
-    setSettings((prev) => ({
-      ...prev,
-      isSidebarOpen: !prev.isSidebarOpen,
-    }));
-  };
+  const { setSettings, settings } = useSettingsContext();
   return (
     <Button
       type="text"
-      onClick={handleClick}
+      onClick={() => {
+        setSettings((prev) => ({
+          ...prev,
+          isSidebarOpen: !prev.isSidebarOpen,
+        }));
+      }}
       icon={
         <Typography>
-          <Icon icon="icon-pantone:menu" width="22px" />
+          <FontAwesomeIcon icon={faBars} width="22px" />
         </Typography>
       }
+      className="sidebar-button"
     />
   );
 };
