@@ -3,7 +3,8 @@ import "./globals.css";
 import StyledComponentsRegistry from "@/lib/AntRegistry";
 import { ClerkProvider } from "@clerk/nextjs";
 import Head from "next/head";
-
+import "../styles/typogoraphy.css";
+import QueryProvider from "@/utilities/QueryProvider";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -21,17 +22,31 @@ export const metadata = {
     "Where being 'not normal' is the normal!, a social media platform to connect with like-minded individuals",
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  // Also supported by less commonly used
+  // interactiveWidget: 'resizes-visual',
+};
+
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      appearance={{
+        signIn: {
+          variables: { colorPrimary: "#F9AA11" },
+        },
+        signUp: {
+          variables: { colorPrimary: "#F9AA11" },
+        },
+      }}
+    >
       <html lang="en">
-        <Head>
-          <link rel="icon" type="image/png" href="/favicon.png" />
-        </Head>
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-          <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+        <body className={`${geistSans.variable} ${geistMono.variable}`}>
+          <QueryProvider>
+            <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+          </QueryProvider>
         </body>
       </html>
     </ClerkProvider>

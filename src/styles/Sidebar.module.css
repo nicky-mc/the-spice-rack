@@ -7,12 +7,14 @@
   height: calc(100% - 72px); /* Adjust this value to match the header height */
   background-color: #333;
   color: white;
-  transition: left 0.3s ease;
+  transition: transform 0.3s ease;
+  transform: translateX(-100%);
   z-index: 998;
 }
 
 .sidebar-wrapper.open {
   left: 0; /* Visible when open */
+  transform: translateX(0);
 }
 
 .sidebar-container {

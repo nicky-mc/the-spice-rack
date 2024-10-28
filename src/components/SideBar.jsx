@@ -1,23 +1,22 @@
 "use client";
-import React, { useState, useEffect, useCallback } from "react";
-import styles from "@/styles/Sidebar.module.css";
+import React, { useCallback, useEffect, useState } from "react";
 import Box from "./Box";
-import { sidebarRoutes } from "@/lib/sidebarRoutes";
+import css from "@/styles/Sidebar.module.css";
+import { sidebarRoutes } from "@/lib/sidebar";
 import { Typography } from "antd";
-import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Icon } from "./Iconify";
+import cx from "classnames";
 import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
+import SidebarContainer from "./SidebarContainer";
 import { useSettingsContext } from "@/context/settings/settings-context";
 import { useClerk, useUser } from "@clerk/nextjs";
-import cx from "classnames";
-
 const Sidebar = () => {
   const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
   const { signOut } = useClerk();
   const router = useRouter();
   const { user } = useUser();
-
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -41,45 +40,66 @@ const Sidebar = () => {
   }, [pathname, handleDrawerClose]);
 
   const isActive = (route) => {
-    return route.route === pathname ? styles.active : "";
+    if (route.route === pathname) return css.active;
+  };
+
+  const activeColor = (route) => {
+    return isActive(route) && "var(--primary)";
   };
 
   return (
-    <div
-      className={cx(styles["sidebar-wrapper"], {
-        [styles.open]: isSidebarOpen,
-      })}
-    >
-      <Box className={styles["sidebar-container"]}>
-        {sidebarRoutes().map(
-          (route, index) =>
-            route.route && (
+    mounted && (
+      <SidebarContainer
+        isDrawrOpen={isSidebarOpen}
+        setIsDrawerOpen={handleDrawerClose}
+      >
+        <div className={css.wrapper}>
+          <Box className={css.container}>
+            {sidebarRoutes(user).map((route, index) => (
               <Link
+                // if the route is profile, then add the person query
+                href={
+                  route.route === `/profile/${user?.id}`
+                    ? `${route.route}?person=${user?.firstName}`
+                    : `${route.route}`
+                }
                 key={index}
-                href={route.route}
-                className={cx(styles.item, isActive(route))}
+                className={cx(css.item, isActive(route))}
               >
-                <Typography>
-                  <FontAwesomeIcon icon={route.icon} width={"25px"} />
+                {/* icon */}
+                <Typography style={{ color: activeColor(route) }}>
+                  <Icon icon={route.icon} width={"20px"} />
                 </Typography>
-                <Typography>{route.name}</Typography>
+
+                {/* name */}
+                <Typography
+                  className="typoSubtitle2"
+                  style={{ color: activeColor(route) }}
+                >
+                  {route.name}
+                </Typography>
               </Link>
-            )
-        )}
-        <Link
-          href={""}
-          onClick={() => {
-            signOut(() => router.push("/sign-in"));
-          }}
-          className={styles.item}
-        >
-          <Typography>
-            <FontAwesomeIcon icon={["fas", "sign-out-alt"]} width={"25px"} />
-          </Typography>
-          <Typography>Sign Out</Typography>
-        </Link>
-      </Box>
-    </div>
+            ))}
+
+            <Link
+              href={""}
+              className={cx(css.item)}
+              onClick={() => {
+                signOut(() => router.push("/sign-in"));
+              }}
+            >
+              {/* icon */}
+              <Typography>
+                <Icon icon={"solar:logout-2-bold"} width={"20px"} />
+              </Typography>
+
+              {/* name */}
+              <Typography className="typoSubtitle2">Sign out</Typography>
+            </Link>
+          </Box>
+        </div>
+      </SidebarContainer>
+    )
   );
 };
 
